@@ -1,0 +1,4 @@
+autogen-agentchat>=0.7,<0.8
+autogen-ext[openai]>=0.7,<0.8
+arxiv>=2.1
+python-dotenv>=1.0

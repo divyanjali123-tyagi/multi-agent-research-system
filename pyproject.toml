@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multi-agent-research-system"
+version = "1.0.0"
+description = "Multi-agent academic paper analysis with AutoGen, OpenAI and the arXiv API."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "autogen-agentchat>=0.7,<0.8",
+    "autogen-ext[openai]>=0.7,<0.8",
+    "arxiv>=2.1",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.5"]
+
+[project.scripts]
+research-agents = "research_agents.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["research_agents*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["UP007"]
+
+[tool.ruff.lint.per-file-ignores]
+"research_agents/mock.py" = ["E501"]
